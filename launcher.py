@@ -34,14 +34,17 @@ from _typing import (
     MinecraftRelease,
 )
 
-ASCII = r""" _____       __  __       __  __  _____
- |  __ \     |  \/  |     |  \/  |/ ____|
- | |__) |   _| \  / |_   _| \  / | |
- |  ___/ | | | |\/| | | | | |\/| | |
- | |   | |_| | |  | | |_| | |  | | |____
- |_|    \__, |_|  |_|\__, |_|  |_|\_____|
-         __/ |        __/ |
-        |___/        |___/   by RealistikDash
+ASCII = r"""
+<---------------------------------------------------------------------------->
+   _____ _                       _                            _              
+  / ____| |                     | |                          | |
+ | (___ | |_ ___  _ __ _ __ ___ | |     __ _ _   _ _ __   ___| |__   ___ _ __
+  \___ \| __/ _ \| '__| '_ ` _ \| |    / _` | | | | '_ \ / __| '_ \ / _ \ '__|
+  ____) | || (_) | |  | | | | | | |___| (_| | |_| | | | | (__| | | |  __/ |  
+ |_____/ \__\___/|_|  |_| |_| |_|______\__,_|\__,_|_| |_|\___|_| |_|\___|_|   
+  
+hecho por STORM GAMES STUDIOS
+<---------------------------------------------------------------------------->
 """
 init()  # initialises colorama
 COLOURS = (
@@ -59,7 +62,7 @@ class Config:
     # Why a class? I dont know
     Config = {}  # this is loaded later on
 
-    Version = "0.1.8MC"
+    Version = "V0.0.1 Alfha"
     MinecraftDir = ""
 
     HasInternet = True
@@ -192,8 +195,8 @@ def config_window():
 
         else:
             error_box(
-                "PyMyMC Error!",
-                "The RAM value has to be an integer (full number) over 0.",
+                "StormLauncher Error!",
+                "El valor de la RAM tiene que ser un numero entero (full number) sobre 0.",
             )
 
     # Discord Rich Presence Update
@@ -206,7 +209,7 @@ def config_window():
     # Initial window settings
     ConfigWindow = Toplevel(MainWindow)
     ConfigWindow.configure(background=constants.ui.BG_COLOUR)  # sets bg colour
-    ConfigWindow.title("PyMyMC Config")  # sets window title
+    ConfigWindow.title("Configuracion de StormLauncher")  # sets window title
     ConfigWindow.protocol("WM_DELETE_WINDOW", ConfigCloseProtocol)
     if SYSTEM == "Windows":
         # other systems dont use ico
@@ -216,14 +219,14 @@ def config_window():
     # WarningLabel
     Warning_Label = Label(
         ConfigWindow,
-        text="Warning! These options are for advanced users only!",
+        text="¡Peligor! ¡Estas configuraciones son para usuarios avanzados!",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 12",
     )
     Warning2_Label = Label(
         ConfigWindow,
-        text="Proceed with caution!",
+        text="¡Proceder con precaucion!",
         bg=constants.ui.BG_COLOUR,
         fg="yellow",
         font="none 12 bold",
@@ -234,7 +237,7 @@ def config_window():
     # MC Path Label
     MCPath_Label = Label(
         ConfigWindow,
-        text="Minecraft Path:",
+        text="Ruta de Minecraft:",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 11",
@@ -250,7 +253,7 @@ def config_window():
     # Dedicated RAM Label
     DRAM_Label = Label(
         ConfigWindow,
-        text="JVM Dedicated RAM:",
+        text="RAM dedicada a JVM:",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 11",
@@ -276,7 +279,7 @@ def config_window():
     RememberMe_Var = IntVar()  # value whether its ticked is stored here
     RememberMe_Checkbox = ttk.Checkbutton(
         ConfigWindow,
-        text="Forget Me",
+        text="Olvidarme",
         variable=RememberMe_Var,
     )
     RememberMe_Checkbox.grid(row=6, column=0, sticky=W)
@@ -287,7 +290,7 @@ def config_window():
         Premium_Var.set(1)  # sets to whats enabled
     Premium_Checkbox = ttk.Checkbutton(
         ConfigWindow,
-        text="Use Premium Minecraft Accounts",
+        text="Usar cuenta premium de Minecraft",
         variable=Premium_Var,
     )
     Premium_Checkbox.grid(row=7, column=0, sticky=W)
@@ -298,7 +301,7 @@ def config_window():
         Historical_Var.set(1)
     Historical_Checkbox = ttk.Checkbutton(
         ConfigWindow,
-        text="Show non-release versions",
+        text="Mostrar versiones no lanzadas",
         variable=Historical_Var,
     )
     Historical_Checkbox.grid(row=8, column=0, sticky=W)
@@ -306,7 +309,7 @@ def config_window():
     # Apply Button
     Apply_Button = ttk.Button(
         ConfigWindow,
-        text="Apply",
+        text="Aplicar",
         width=constants.ui.BOX_WIDTH,
         command=SaveConfig,
     )
@@ -330,20 +333,20 @@ def install(PlayAfter=False):
     MinecraftFound = os.path.exists(Config.MinecraftDir + f"versions\\{Version}\\")
     if MinecraftFound:
         message_box(
-            "PyMyMC Info!",
-            "This version is already installed! Press play to play it!",
+            "¡StormLauncher Info!",
+            "¡Esta versión ya está instalada! ¡Pulsa jugar para reproducirlo!",
         )
 
     elif not Config.HasInternet:
         error_box(
-            "PyMyMC Error!",
-            "An internet connection is required for this action!",
+            "¡StormLauncher Error!",
+            "¡Se requiere una conexión a Internet para esta acción!",
         )
 
     else:
         message_box(
-            "PyMyMC Info!",
-            "Downloading started! If you pressed play to download, the program will freeze.",
+            "¡StormLauncher Info!",
+            "¡Comenzó la descarga! Si pulsas jugar para descargar, el programa se congelará.",
         )
         callback = {
             "setStatus": set_status_handler,
@@ -393,10 +396,10 @@ def play():
             else:
                 PrState = ""
             RPC.update(
-                state=f"Playing Minecraft {version}",
+                state=f"Jugando Minecraft {version}",
                 large_image=constants.rpc.LARGE_IMAGE,
                 small_image=SmallIcon,
-                details=f"Playing as {username}{PrState}",
+                details=f"Jugando como {username}{PrState}",
             )
 
     Email = Username_Entry.get()
@@ -406,7 +409,7 @@ def play():
 
     # NonPremium code
     if Email == "":
-        warning_box("PyMyMC Error!", "Username cannot be empty!")
+        warning_box("StormLauncher Error!", "¡El nombre de usuario no puede estar vacío!")
     else:
         if Config.Config["Premium"]:
             # Attempt to make a username out of the email.
@@ -415,7 +418,7 @@ def play():
             "username": Email,
             "uuid": str(hashlib.md5(str.encode(Email)).digest()),
             "token": "",
-            "launcherName": "PyMyMC",
+            "launcherName": "StormLauncher",
             "gameDirectory": Config.MinecraftDir,
             "jvmArguments": [f"-Xmx{Config.Config['JVMRAM']}G"],
         }
@@ -435,7 +438,7 @@ def play():
         PlayRPCUpdate(Version, Email, False)
 
         subprocess.call(Command)
-        # message_box("PyMyMC", "Thank you for using PyMyMC!") #Temporarily disabled as it would create an empty tk window
+        # message_box("StormLauncher", "Thank you for using StormLauncher!") #Temporarily disabled as it would create an empty tk window
 
 
 if SYSTEM == "Windows":
@@ -555,7 +558,7 @@ def set_default_presence():
     """Sets the default presence"""
     if constants.rpc.ENABLED:
         RPC.update(
-            state="In the main menu.",
+            state="En el menú principal.",
             large_image=constants.rpc.LARGE_IMAGE,
             small_image=constants.rpc.ROOT_IMAGE,
         )
@@ -563,7 +566,7 @@ def set_default_presence():
 
 def populate_root():
     """Populates the fields in this function to make the window show up faster"""
-    print("Populating...")
+    print("Cambiando...")
     if Config.Config["Premium"]:
         Username_Label["text"] = "Email"
     else:
@@ -620,17 +623,17 @@ def fetch_versions() -> list[str]:
 # The creation of the main window
 if __name__ == "__main__":
     log_coloured(ASCII, random.choice(COLOURS))
-    log_info("Checking internet status...")
+    log_info("Comprobando conexion a internet...")
     config_load()
     if constants.rpc.ENABLED:
-        log_info("Configuring the Discord Rich Presence...")
+        log_info("Configurando el Rich Presence de Discord...")
         RPC = Presence(constants.rpc.CLIENT_ID)
         RPC.connect()
         set_default_presence()
-    log_info("Loading themes...")
+    log_info("Cargando temas...")
     MainWindow = ThemedTk(theme=constants.ui.THEME)
     # Styles
-    log_info("Configuring the UI...")
+    log_info("Configurando el UI...")
     s = ttk.Style()
     s.configure(
         "TButton",
@@ -645,7 +648,7 @@ if __name__ == "__main__":
     )
 
     MainWindow.configure(background=constants.ui.BG_COLOUR)  # sets bg colour
-    MainWindow.title("PyMyMC")  # sets window title
+    MainWindow.title("StormLauncher")  # sets window title
     if SYSTEM == "Windows":
         # other systems dont use ico
         MainWindow.iconbitmap(constants.ui.LOGO_ICON)  # sets window icon
@@ -664,14 +667,14 @@ if __name__ == "__main__":
     # Info Label
     PInfo_Label = Label(
         MainWindow,
-        text=f"PyMyMC {Config.Version}",
+        text=f"StormLauncher {Config.Version}",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="Arial 15 bold",
     )
     PInfo2_Label = Label(
         MainWindow,
-        text="Made by RealistikDash",
+        text="Hecho por STORM GAMES STUDIOS",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 13",
@@ -682,7 +685,7 @@ if __name__ == "__main__":
     # Username Label
     Username_Label = Label(
         MainWindow,
-        text="Email:",
+        text="Correo/Usuario:",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 12",
@@ -702,7 +705,7 @@ if __name__ == "__main__":
     # Password Label
     Password_Label = Label(
         MainWindow,
-        text="Password:",
+        text="Contraseña:",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 12",
@@ -716,7 +719,7 @@ if __name__ == "__main__":
     # Play Button
     Play_Button = ttk.Button(
         MainWindow,
-        text="Play!",
+        text="¡Jugar!",
         width=constants.ui.BOX_WIDTH,
         command=play,
     )
@@ -725,7 +728,7 @@ if __name__ == "__main__":
     # Install Button
     Install_Button = ttk.Button(
         MainWindow,
-        text="Download!",
+        text="¡Descargar!",
         width=constants.ui.BOX_WIDTH,
         command=install,
     )
@@ -754,7 +757,7 @@ if __name__ == "__main__":
     # Config Button
     Config_Button = ttk.Button(
         MainWindow,
-        text="Config",
+        text="Configuracion",
         width=constants.ui.BOX_WIDTH,
         command=config_window,
     )
@@ -764,7 +767,7 @@ if __name__ == "__main__":
     RememberMe_Var = IntVar()  # value whether its ticked is stored here
     RememberMe_Checkbox = ttk.Checkbutton(
         MainWindow,
-        text="Remember me",
+        text="Recordarme",
         variable=RememberMe_Var,
     )
     RememberMe_Checkbox.grid(row=10, column=0, sticky=E)
@@ -785,5 +788,5 @@ if __name__ == "__main__":
     )  # only way i found of maintaining same width
     Ver_List.grid(row=10, column=0, sticky=W)
 
-    log_info("Done!")
+    log_info("¡Completado!")
     MainWindow.mainloop()
