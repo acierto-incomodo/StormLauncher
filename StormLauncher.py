@@ -34,6 +34,13 @@ from _typing import (
     MinecraftRelease,
 )
 
+import urllib.request
+import tkinter as tk
+from tkinter import messagebox
+import os
+import shutil
+import filecmp
+
 def check_version():
     # URL del archivo version.txt en el repositorio de GitHub
     url = 'https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt'
@@ -48,8 +55,50 @@ def check_version():
         
         # Comparar las versiones
         if current_version < latest_version:
-            print('Hay una nueva versión disponible:', latest_version)
-            # Aquí puedes agregar tu lógica de notificación o actualización
+            # Mostrar una ventana emergente con la notificación y opciones de reemplazo
+            root = tk.Tk()
+            root.withdraw()
+            result = messagebox.askquestion('Actualización disponible', 'Hay una nueva versión disponible: {}. ¿Deseas actualizar?'.format(latest_version))
+            
+            if result == 'yes':
+                # Descargar y reemplazar los archivos desde GitHub
+                
+                # URL del archivo zip en el repositorio de GitHub
+                zip_url = 'https://github.com/acierto-incomodo/StormLauncher/archive/refs/tags/{}.zip'.format(latest_version)
+                
+                # Nombre del archivo zip
+                zip_filename = 'StormLauncher-{}.zip'.format(latest_version)
+                
+                # Descargar el archivo zip
+                urllib.request.urlretrieve(zip_url, zip_filename)
+                
+                # Directorio de destino para extraer los archivos del zip
+                destination_dir = 'update'
+                
+                # Extraer los archivos del zip en el directorio de destino
+                shutil.unpack_archive(zip_filename, destination_dir)
+                
+                # Comparar los archivos existentes con los archivos descargados desde GitHub
+                for root, dirs, files in os.walk(destination_dir):
+                    for file in files:
+                        src_path = os.path.join(root, file)
+                        dst_path = os.path.join(os.getcwd(), file)
+                        if os.path.exists(dst_path) and filecmp.cmp(src_path, dst_path):
+                            # El archivo ya existe en la ubicación local y es idéntico al archivo descargado, no es necesario reemplazarlo
+                            continue
+                        shutil.copy2(src_path, dst_path)
+                
+                # Eliminar el directorio de destino y el archivo zip
+                shutil.rmtree(destination_dir)
+                os.remove(zip_filename)
+                
+                # Después de completar la actualización, puedes mostrar un mensaje de éxito
+                messagebox.showinfo('Actualización completada', 'La actualización se ha completado con éxito.')
+                
+            else:
+                messagebox.showinfo('Actualización cancelada', 'La actualización ha sido cancelada.')
+                
+            root.destroy()
         else:
             print('La versión actual es la más reciente.')
     except urllib.error.URLError as e:
@@ -87,7 +136,7 @@ class Config:
     # Why a class? I dont know
     Config = {}  # this is loaded later on
 
-    Version = "V0.0.1 Alfha"
+    Version = "V0.0.2 Alfha"
     MinecraftDir = ""
 
     HasInternet = True
