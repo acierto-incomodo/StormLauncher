@@ -43,7 +43,7 @@ ASCII = r"""
   ____) | || (_) | |  | | | | | | |___| (_| | |_| | | | | (__| | | |  __/ |  
  |_____/ \__\___/|_|  |_| |_| |_|______\__,_|\__,_|_| |_|\___|_| |_|\___|_|   
   
-hecho por STORM GAMES STUDIOS
+Hecho por STORM GAMES STUDIOS
 <---------------------------------------------------------------------------->
 """
 init()  # initialises colorama
@@ -202,8 +202,8 @@ def config_window():
     # Discord Rich Presence Update
     if constants.rpc.ENABLED:
         RPC.update(
-            state="Configuring things...",
-            small_image=constants.rpc.CONFIG_IMAGE,
+            state="Configurando cosas...",
+            small_image=constants.rpc.LARGE_IMAGE,
             large_image=constants.rpc.LARGE_IMAGE,
         )
     # Initial window settings
@@ -219,7 +219,7 @@ def config_window():
     # WarningLabel
     Warning_Label = Label(
         ConfigWindow,
-        text="¡Peligor! ¡Estas configuraciones son para usuarios avanzados!",
+        text="¡Peligro! ¡Estas configuraciones son para usuarios avanzados!",
         bg=constants.ui.BG_COLOUR,
         fg="white",
         font="none 12",
@@ -392,7 +392,7 @@ def play():
 
             # Details text
             if not isPremium:
-                PrState = ", non-premuim"
+                PrState = ""
             else:
                 PrState = ""
             RPC.update(
@@ -455,7 +455,7 @@ EXAMPLE_CONFIG = {
     "AccessToken": "",
     "JVMRAM": 2,  # in GB
     "Premium": True,
-    "LastSelected": "1.15.1",
+    "LastSelected": "1.16.5",
     "OnlyReleases": True,
 }
 
@@ -493,7 +493,7 @@ def config_load():
         Config.Config["Premium"] = True
 
     if "LastSelected" not in list(Config.Config.keys()):
-        Config.Config["LastSelected"] = "1.15.1"
+        Config.Config["LastSelected"] = "1.16.5"
 
     if "OnlyReleases" not in list(Config.Config.keys()):
         Config.Config["OnlyReleases"] = True
@@ -568,9 +568,9 @@ def populate_root():
     """Populates the fields in this function to make the window show up faster"""
     print("Cambiando...")
     if Config.Config["Premium"]:
-        Username_Label["text"] = "Email"
+        Username_Label["text"] = "Correo:"
     else:
-        Username_Label["text"] = "Username:"
+        Username_Label["text"] = "Usuario:"
 
     # Version list
     minecraft_versions = fetch_versions()
@@ -659,10 +659,10 @@ if __name__ == "__main__":
     )  # runs the function when the user presses the X button
 
     # Logo Image
-    PyMyMC_Logo = PhotoImage(file=constants.ui.LOGO_SMALL)
-    PyMyMC_Logo_Label = Label(MainWindow, image=PyMyMC_Logo)
-    PyMyMC_Logo_Label["bg"] = PyMyMC_Logo_Label.master["bg"]
-    PyMyMC_Logo_Label.grid(row=0, column=0)
+    StormLauncher_Logo = PhotoImage(file=constants.ui.LOGO_SMALL)
+    StormLauncher_Logo_Label = Label(MainWindow, image=StormLauncher_Logo)
+    StormLauncher_Logo_Label["bg"] = StormLauncher_Logo_Label.master["bg"]
+    StormLauncher_Logo_Label.grid(row=0, column=0)
 
     # Info Label
     PInfo_Label = Label(
