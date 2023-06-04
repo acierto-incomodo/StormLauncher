@@ -1,5 +1,7 @@
-# Instalación
+# StormLauncher
+![UI Show](/main/img/stormlauncher.png)
 
+# Instalación
 La instalación solo requiere un comando.
 - Obtenga Python 3.6 o superior.
 - Abra CMD en el directorio donde extrajo los archivos.
