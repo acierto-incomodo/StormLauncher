@@ -136,7 +136,7 @@ class Config:
     # Why a class? I dont know
     Config = {}  # this is loaded later on
 
-    Version = "V0.0.2 Alfha"
+    Version = "V0.0.3 Alfha"
     MinecraftDir = ""
 
     HasInternet = True
