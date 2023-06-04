@@ -34,6 +34,27 @@ from _typing import (
     MinecraftRelease,
 )
 
+import requests
+
+def check_version():
+    current_version = "0.0.1"  # Versión actual de tu aplicación
+    version_url = "https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt"  # URL de tu archivo version.txt en GitHub
+
+    try:
+        response = requests.get(version_url)
+        latest_version = response.text.strip()
+
+        if latest_version == current_version:
+            print("Estás utilizando la versión más reciente.")
+        else:
+            print("Hay una nueva versión disponible:", latest_version)
+
+    except requests.exceptions.RequestException:
+        print("No se pudo obtener la versión desde el servidor.")
+
+check_version()
+
+
 ASCII = r"""
 <---------------------------------------------------------------------------->
    _____ _                       _                            _              
