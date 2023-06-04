@@ -60,7 +60,7 @@ def check_version():
             
             if result == 'yes':
                 # Redirigir al usuario a la página de GitHub para descargar la nueva versión
-                url_github = 'https://github.com/acierto-incomodo/StormLauncher/releases'
+                url_github = 'https://github.com/acierto-incomodo/StormLauncher/releases/latest'
                 webbrowser.open(url_github)
                 
             else:
