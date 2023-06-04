@@ -733,7 +733,7 @@ if __name__ == "__main__":
     )  # runs the function when the user presses the X button
 
     # Logo Image
-    StormLauncher_Logo = PhotoImage(file=constants.ui.LOGO_SMALL)
+    StormLauncher_Logo = (file=constants.ui.LOGO_SMALL)
     StormLauncher_Logo_Label = Label(MainWindow, image=StormLauncher_Logo)
     StormLauncher_Logo_Label["bg"] = StormLauncher_Logo_Label.master["bg"]
     StormLauncher_Logo_Label.grid(row=0, column=0)
