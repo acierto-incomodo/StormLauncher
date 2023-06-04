@@ -1,6 +1,11 @@
 # StormLauncher
 ![StormLauncher Icon](/img/stormlauncher_logo.png)
 
+# Versiones
+Mira nuestras ultimas versiones:
+- [Todas las versiones](https://pages.github.com/).
+- [Ultima Version (V0.0.1 Alfha)](https://pages.github.com/).
+
 # Instalación
 La instalación solo requiere un comando.
 - Obtenga Python 3.6 o superior.
