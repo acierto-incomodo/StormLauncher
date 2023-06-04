@@ -4,3 +4,5 @@ natsort==6.2.0
 pypresence
 requests
 ttkthemes
+requests
+subprocess
