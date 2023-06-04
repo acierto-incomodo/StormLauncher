@@ -15,7 +15,6 @@ from tkinter import E
 from tkinter import IntVar
 from tkinter import Label
 from tkinter import messagebox
-from tkinter import PhotoImage
 from tkinter import StringVar
 from tkinter import Toplevel
 from tkinter import ttk
