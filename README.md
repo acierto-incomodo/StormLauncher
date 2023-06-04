@@ -3,8 +3,8 @@
 
 # Versiones
 Mira nuestras ultimas versiones:
-- [Todas las versiones](https://pages.github.com/).
-- [Ultima Version (V0.0.1 Alfha)](https://pages.github.com/).
+- [Todas las versiones](https://github.com/acierto-incomodo/StormLauncher/releases).
+- [Ultima Version (V0.0.1 Alfha)](https://github.com/acierto-incomodo/StormLauncher/releases/tag/Alfha)
 
 # Instalación
 La instalación solo requiere un comando.
