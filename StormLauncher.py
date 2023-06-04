@@ -734,7 +734,7 @@ if __name__ == "__main__":
 
     # Logo Image
     StormLauncher_Logo = PhotoImage(file=constants.ui.LOGO_SMALL)
-    StormLauncher_Logo_Label = Label(MainWindow, image=stormlauncher_logo)
+    StormLauncher_Logo_Label = Label(file=constants.ui.LOGO_ICON)
     StormLauncher_Logo_Label["bg"] = StormLauncher_Logo_Label.master["bg"]
     StormLauncher_Logo_Label.grid(row=0, column=0)
 
