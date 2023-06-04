@@ -36,6 +36,13 @@ from _typing import (
 
 import requests
 
+import subprocess
+
+# Ejecutar un comando en la consola
+comando = "pip install requests"  # Ejemplo de comando, en este caso "ls -l" para listar archivos en sistemas Unix/Linux
+subprocess.call(comando, shell=True)
+
+
 def check_version():
     current_version = "0.0.1"  # Versión actual de tu aplicación
     version_url = "https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt"  # URL de tu archivo version.txt en GitHub
