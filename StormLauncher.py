@@ -37,9 +37,7 @@ from _typing import (
 import urllib.request
 import tkinter as tk
 from tkinter import messagebox
-import os
-import shutil
-import filecmp
+import webbrowser
 
 def check_version():
     # URL del archivo version.txt en el repositorio de GitHub
@@ -55,51 +53,15 @@ def check_version():
         
         # Comparar las versiones
         if current_version < latest_version:
-            # Mostrar una ventana emergente con la notificación y opciones de reemplazo
+            # Mostrar una ventana emergente con la notificación y opciones
             root = tk.Tk()
             root.withdraw()
             result = messagebox.askquestion('Actualización disponible', 'Hay una nueva versión disponible: {}. ¿Deseas actualizar?'.format(latest_version))
             
             if result == 'yes':
-                # Descargar y reemplazar los archivos desde GitHub
-                
-                # URL del archivo zip en el repositorio de GitHub
-                zip_url = 'https://github.com/acierto-incomodo/StormLauncher/archive/refs/tags/{}.zip'.format(latest_version)
-                
-                # Nombre del archivo zip
-                zip_filename = 'StormLauncher-{}.zip'.format(latest_version)
-                
-                # Descargar el archivo zip
-                urllib.request.urlretrieve(zip_url, zip_filename)
-                
-                # Directorio de destino para extraer los archivos del zip
-                destination_dir = 'update'
-                
-                # Extraer los archivos del zip en el directorio de destino
-                shutil.unpack_archive(zip_filename, destination_dir)
-                
-                # Obtener la lista de archivos existentes en el directorio local
-                local_files = []
-                for root, dirs, files in os.walk(os.getcwd()):
-                    for file in files:
-                        local_files.append(file)
-                
-                # Comparar los archivos existentes con los archivos descargados desde GitHub
-                for root, dirs, files in os.walk(destination_dir):
-                    for file in files:
-                        src_path = os.path.join(root, file)
-                        dst_path = os.path.join(os.getcwd(), file)
-                        
-                        if file not in local_files or not filecmp.cmp(src_path, dst_path):
-                            # El archivo no existe en la ubicación local o es diferente al archivo descargado, se reemplaza
-                            shutil.copy2(src_path, dst_path)
-                
-                # Eliminar el directorio de destino y el archivo zip
-                shutil.rmtree(destination_dir)
-                os.remove(zip_filename)
-                
-                # Después de completar la actualización, puedes mostrar un mensaje de éxito
-                messagebox.showinfo('Actualización completada', 'La actualización se ha completado con éxito.')
+                # Redirigir al usuario a la página de GitHub para descargar la nueva versión
+                url_github = 'https://github.com/acierto-incomodo/StormLauncher/releases'
+                webbrowser.open(url_github)
                 
             else:
                 messagebox.showinfo('Actualización cancelada', 'La actualización ha sido cancelada.')
