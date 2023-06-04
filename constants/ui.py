@@ -18,5 +18,5 @@ else:
     BAR_LEN = 245
     LIST_LEN = 8
 
-LOGO_SMALL = os.path.join("img", "stormlauncher_logo_small.png")
+LOGO_SMALL = os.path.join("img", "stormlauncher_logo.png")
 LOGO_ICON = os.path.join("img", "stormlauncher_ico.ico")
