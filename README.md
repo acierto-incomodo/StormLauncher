@@ -1,5 +1,5 @@
 # StormLauncher
-![UI Show](/main/img/stormlauncher.png)
+![StormLauncher Icon](/img/stormlauncher.png)
 
 # Instalación
 La instalación solo requiere un comando.
