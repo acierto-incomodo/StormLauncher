@@ -44,7 +44,7 @@ subprocess.call(comando, shell=True)
 
 
 def check_version():
-    current_version = "0.0.1"  # Versión actual de tu aplicación
+    current_version = "0.0.2"  # Versión actual de tu aplicación
     version_url = "https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt"  # URL de tu archivo version.txt en GitHub
 
     try:
