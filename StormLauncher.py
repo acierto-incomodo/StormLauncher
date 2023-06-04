@@ -34,31 +34,28 @@ from _typing import (
     MinecraftRelease,
 )
 
-import requests
-
-import subprocess
-
-# Ejecutar un comando en la consola
-comando = "pip install requests"  # Ejemplo de comando, en este caso "ls -l" para listar archivos en sistemas Unix/Linux
-subprocess.call(comando, shell=True)
-
-
 def check_version():
-    current_version = "0.0.2"  # Versión actual de tu aplicación
-    version_url = "https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt"  # URL de tu archivo version.txt en GitHub
-
+    # URL del archivo version.txt en el repositorio de GitHub
+    url = 'https://raw.githubusercontent.com/acierto-incomodo/StormLauncher/master/version.txt'
+    
     try:
-        response = requests.get(version_url)
-        latest_version = response.text.strip()
-
-        if latest_version == current_version:
-            print("Estás utilizando la versión más reciente.")
+        # Descargar el contenido del archivo version.txt
+        response = urllib.request.urlopen(url)
+        latest_version = response.read().decode().strip()
+        
+        # Obtener la versión actual del programa (puedes reemplazar esto por tu propia lógica)
+        current_version = '0.0.2'
+        
+        # Comparar las versiones
+        if current_version < latest_version:
+            print('Hay una nueva versión disponible:', latest_version)
+            # Aquí puedes agregar tu lógica de notificación o actualización
         else:
-            print("Hay una nueva versión disponible:", latest_version)
+            print('La versión actual es la más reciente.')
+    except urllib.error.URLError as e:
+        print('Error al verificar la versión:', e)
 
-    except requests.exceptions.RequestException:
-        print("No se pudo obtener la versión desde el servidor.")
-
+# Llamar a la función de verificación de versión
 check_version()
 
 
