@@ -78,15 +78,21 @@ def check_version():
                 # Extraer los archivos del zip en el directorio de destino
                 shutil.unpack_archive(zip_filename, destination_dir)
                 
+                # Obtener la lista de archivos existentes en el directorio local
+                local_files = []
+                for root, dirs, files in os.walk(os.getcwd()):
+                    for file in files:
+                        local_files.append(file)
+                
                 # Comparar los archivos existentes con los archivos descargados desde GitHub
                 for root, dirs, files in os.walk(destination_dir):
                     for file in files:
                         src_path = os.path.join(root, file)
                         dst_path = os.path.join(os.getcwd(), file)
-                        if os.path.exists(dst_path) and filecmp.cmp(src_path, dst_path):
-                            # El archivo ya existe en la ubicación local y es idéntico al archivo descargado, no es necesario reemplazarlo
-                            continue
-                        shutil.copy2(src_path, dst_path)
+                        
+                        if file not in local_files or not filecmp.cmp(src_path, dst_path):
+                            # El archivo no existe en la ubicación local o es diferente al archivo descargado, se reemplaza
+                            shutil.copy2(src_path, dst_path)
                 
                 # Eliminar el directorio de destino y el archivo zip
                 shutil.rmtree(destination_dir)
@@ -99,12 +105,13 @@ def check_version():
                 messagebox.showinfo('Actualización cancelada', 'La actualización ha sido cancelada.')
                 
             root.destroy()
-        else:
-            print('La versión actual es la más reciente.')
-    except urllib.error.URLError as e:
-        print('Error al verificar la versión:', e)
+            
+    except Exception as e:
+        # Mostrar una ventana emergente con un mensaje de error
+        messagebox.showerror('Error', 'Ocurrió un error durante la verificación de la versión:\n{}'.format(str(e)))
 
-# Llamar a la función de verificación de versión
+
+# Ejecutar la función para verificar la versión
 check_version()
 
 
@@ -118,6 +125,8 @@ ASCII = r"""
  |_____/ \__\___/|_|  |_| |_| |_|______\__,_|\__,_|_| |_|\___|_| |_|\___|_|   
   
 Hecho por STORM GAMES STUDIOS
+
+Version: V0.0.2 Alfha
 <---------------------------------------------------------------------------->
 """
 init()  # initialises colorama
