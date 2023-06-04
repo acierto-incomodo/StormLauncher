@@ -136,7 +136,7 @@ class Config:
     # Why a class? I dont know
     Config = {}  # this is loaded later on
 
-    Version = "V0.0.3 Alfha"
+    Version = "V0.0.2 Alfha"
     MinecraftDir = ""
 
     HasInternet = True
@@ -277,7 +277,7 @@ def config_window():
     if constants.rpc.ENABLED:
         RPC.update(
             state="Configurando cosas...",
-            small_image=constants.rpc.LARGE_IMAGE,
+            small_image=constants.rpc.SMALL_IMAGE,
             large_image=constants.rpc.LARGE_IMAGE,
         )
     # Initial window settings
