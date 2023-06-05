@@ -10,7 +10,7 @@ Mira nuestras ultimas versiones:
 La instalación solo requiere un comando.
 - Obtenga Python 3.6 o superior.
 - Abra CMD en el directorio donde extrajo los archivos.
-- Ejecute pip install -r requisitos.txt
+- Ejecute pip install -r requirements.txt
 - Ejecutar launcher.py
 ¡Y eso es!
 
